@@ -1,0 +1,172 @@
+.historial-facturas {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.historial-vacio {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.historial-vacio-content {
+  padding: 48px 24px;
+}
+
+.historial-vacio-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+}
+
+.historial-vacio h3 {
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.historial-vacio p {
+  color: var(--text-secondary);
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 24px;
+}
+
+.fecha-cell,
+.cliente-cell,
+.producto-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fecha-principal,
+.cliente-nombre,
+.producto-nombre {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.folio,
+.cliente-rfc,
+.producto-cantidad {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.total-cell {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--success-color);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.badge-success {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.badge-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.badge-info {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.btn-icon:hover {
+  background-color: var(--background);
+  border-color: var(--primary-color);
+}
+
+.historial-resumen {
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+.resumen-stats {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    font-size: 14px;
+  }
+  
+  .acciones {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .resumen-stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .fecha-cell,
+  .cliente-cell,
+  .producto-cell {
+    gap: 2px;
+  }
+  
+  .folio,
+  .cliente-rfc,
+  .producto-cantidad {
+    font-size: 11px;
+  }
+}
