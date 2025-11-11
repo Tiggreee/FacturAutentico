@@ -162,13 +162,25 @@ npm run preview
 
 ## 🚀 Despliegue
 
-### Opción 1: Local/VPS
+### GitHub Pages (Recomendado para Demo)
+El proyecto está configurado para despliegue automático en GitHub Pages:
+
+1. **Configuración automática**: Cada push a `main` despliega automáticamente
+2. **URL del sitio**: https://tiggreee.github.io/FacturAutentico/
+3. **Workflow**: `.github/workflows/deploy.yml` maneja el proceso completo
+
+**Activar GitHub Pages**:
+1. Ve a Settings → Pages en tu repositorio
+2. Source: selecciona "GitHub Actions"
+3. El sitio se desplegará automáticamente en el próximo push a `main`
+
+### Opción 2: Local/VPS
 1. Build del proyecto
 2. Servir con nginx/apache
 3. Configurar HTTPS
 4. Backup de certificados
 
-### Opción 2: Cloud
+### Opción 3: Cloud
 - Vercel (frontend)
 - Railway/DigitalOcean (backend)
 - Configurar variables de entorno
