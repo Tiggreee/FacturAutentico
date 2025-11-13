@@ -1,5 +1,5 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Fondo -->
+  <!-- Fondo con degradado auténtico -->
   <rect width="64" height="64" rx="12" fill="url(#faviconGrad)"/>
   
   <defs>
@@ -9,11 +9,9 @@
     </linearGradient>
   </defs>
   
-  <!-- Letra A estilizada -->
-  <text x="32" y="48" font-family="Arial, sans-serif" font-weight="bold" font-size="44" fill="#FFF8F0" text-anchor="middle">
-    A
-  </text>
+  <!-- Imagen del logo embebida -->
+  <image href="/autenticoLogo.png" x="4" y="4" width="56" height="56" preserveAspectRatio="xMidYMid meet"/>
   
-  <!-- Acento decorativo -->
-  <circle cx="32" cy="14" r="3" fill="#F4A460"/>
+  <!-- Borde decorativo -->
+  <rect width="64" height="64" rx="12" fill="none" stroke="#F4A460" stroke-width="2" opacity="0.5"/>
 </svg>
