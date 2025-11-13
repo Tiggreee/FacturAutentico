@@ -1,8 +1,9 @@
 .header {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
   color: white;
-  padding: 24px 0;
-  box-shadow: var(--shadow);
+  padding: 20px 0;
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+  border-bottom: 3px solid var(--accent-color);
 }
 
 .header-content {
@@ -11,16 +12,31 @@
   align-items: center;
 }
 
-.logo h1 {
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-image {
+  height: 60px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.logo-text h1 {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 4px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.logo p {
+.logo-text p {
   font-size: 14px;
-  opacity: 0.9;
+  opacity: 0.95;
   margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.5px;
 }
 
 .header-info {

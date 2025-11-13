@@ -4,31 +4,40 @@
 
 .tabs {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   margin-bottom: 32px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+  background: linear-gradient(to bottom, var(--card-background) 0%, var(--background) 100%);
+  padding: 8px 8px 0 8px;
+  border-radius: 12px 12px 0 0;
 }
 
 .tab {
-  padding: 12px 24px;
+  padding: 14px 28px;
   border: none;
   background: transparent;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   color: var(--text-secondary);
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  border-radius: 8px 8px 0 0;
+  position: relative;
 }
 
 .tab:hover {
-  color: var(--text-primary);
-  background-color: var(--background);
+  color: var(--primary-color);
+  background-color: rgba(210, 105, 30, 0.08);
+  transform: translateY(-2px);
 }
 
 .tab.active {
   color: var(--primary-color);
   border-bottom-color: var(--primary-color);
+  background-color: white;
+  font-weight: 600;
+  box-shadow: 0 -2px 8px rgba(139, 69, 19, 0.1);
 }
 
 .tab-content {
