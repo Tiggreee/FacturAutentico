@@ -144,6 +144,10 @@
 }
 
 @media (max-width: 768px) {
+  .historial-facturas {
+    padding: 0 10px;
+  }
+  
   .table-container {
     font-size: 14px;
   }
@@ -168,5 +172,28 @@
   .cliente-rfc,
   .producto-cantidad {
     font-size: 11px;
+  }
+  
+  .badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .historial-vacio-content {
+    padding: 32px 16px;
+  }
+  
+  .historial-vacio-icon {
+    font-size: 48px;
+  }
+  
+  .total-cell {
+    font-size: 14px;
+  }
+  
+  .stat-value {
+    font-size: 18px;
   }
 }

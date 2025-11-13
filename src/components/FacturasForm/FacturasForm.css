@@ -106,15 +106,57 @@
 }
 
 @media (max-width: 768px) {
+  .facturas-form {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
   .facturas-form .grid-2 {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
   
   .form-section {
     padding: 16px;
   }
   
+  .form-section h3 {
+    font-size: 16px;
+  }
+  
   .resumen-importes {
     padding: 16px;
+  }
+  
+  .resumen-importes h3 {
+    font-size: 18px;
+  }
+  
+  .btn-large {
+    padding: 14px 24px;
+    font-size: 14px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-section {
+    padding: 12px;
+  }
+  
+  .form-section h3 {
+    font-size: 14px;
+  }
+  
+  .resumen-importes {
+    padding: 12px;
+  }
+  
+  .importe-item {
+    font-size: 14px;
+  }
+  
+  .importe-item.total {
+    font-size: 16px;
   }
 }
