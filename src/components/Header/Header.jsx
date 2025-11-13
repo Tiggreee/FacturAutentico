@@ -6,7 +6,7 @@ function Header() {
       <div className="container">
         <div className="header-content">
           <div className="logo">
-            <img src="/logo.svg" alt="El Auténtico - Chorizo de Huetamo" className="logo-image" />
+            <img src="/autenticoLogo.png" alt="El Auténtico - Chorizo de Huetamo" className="logo-image" />
             <div className="logo-text">
               <h1>Factur<span style={{color: 'var(--accent-color)'}}>Auténtico</span></h1>
               <p>Sistema de facturación CFDI 4.0</p>
