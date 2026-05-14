@@ -2,6 +2,12 @@
 
 Sistema simplificado de facturación electrónica para negocios familiares con interfaz minimalista y proceso automatizado.
 
+## 🌐 Demo en Vivo
+
+**🔗 [Ver aplicación en GitHub Pages](https://tiggreee.github.io/FacturAutentico/)**
+
+> La aplicación se despliega automáticamente con cada push a la rama `main`
+
 ## 🎯 Características
 
 - **Interfaz minimalista**: Solo campos esenciales para facilitar el uso
@@ -162,17 +168,45 @@ npm run preview
 
 ## 🚀 Despliegue
 
-### GitHub Pages (Recomendado para Demo)
-El proyecto está configurado para despliegue automático en GitHub Pages:
+### ✨ GitHub Pages (Recomendado para frontend)
 
-1. **Configuración automática**: Cada push a `main` despliega automáticamente
-2. **URL del sitio**: https://tiggreee.github.io/FacturAutentico/
-3. **Workflow**: `.github/workflows/deploy.yml` maneja el proceso completo
+**¡El proyecto ya está configurado para GitHub Pages!** 🎉
 
-**Activar GitHub Pages**:
-1. Ve a Settings → Pages en tu repositorio
-2. Source: selecciona "GitHub Actions"
-3. El sitio se desplegará automáticamente en el próximo push a `main`
+#### Deployment Automático
+El sitio se despliega automáticamente a GitHub Pages cuando haces push a la rama `main`:
+
+1. **Habilitar GitHub Pages** (solo primera vez):
+   - Ve a tu repositorio en GitHub
+   - Settings → Pages
+   - Source: GitHub Actions
+
+2. **Push a main**:
+   ```bash
+   git checkout main
+   git merge develop  # o tu rama de trabajo
+   git push origin main
+   ```
+
+3. **Acceder al sitio**:
+   - URL: `https://tiggreee.github.io/FacturAutentico/`
+   - El deployment toma ~2 minutos
+
+#### Deployment Manual
+Si prefieres hacer deploy manual:
+
+```bash
+# Build del proyecto
+npm run build
+
+# Preview local del build
+npm run preview  # http://localhost:4173
+```
+
+El workflow de GitHub Actions (`.github/workflows/deploy.yml`) se encarga de:
+- ✅ Instalar dependencias
+- ✅ Construir el proyecto
+- ✅ Desplegar a GitHub Pages
+- ✅ Actualizar automáticamente
 
 ### Opción 2: Local/VPS
 1. Build del proyecto
