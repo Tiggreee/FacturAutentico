@@ -6,9 +6,13 @@
   "description": "Sistema de facturación CFDI 4.0 para negocio familiar",
   "scripts": {
     "dev": "vite",
+    "dev:all": "concurrently -k -n api,web -c blue,magenta \"npm run api:dev\" \"npm run dev\"",
+    "postinstall": "npm install --prefix server",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "api": "npm start --prefix server",
+    "api:dev": "npm run dev --prefix server"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -20,6 +24,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^9.1.2",
     "eslint": "^9.9.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",

@@ -16,6 +16,7 @@ function HistorialFacturas({ facturas }) {
     const badges = {
       pendiente: { class: 'badge-warning', text: '⏳ Pendiente' },
       timbrada: { class: 'badge-success', text: '✅ Timbrada' },
+      'timbrada-mock': { class: 'badge-warning', text: '🧪 Timbrada (mock)' },
       enviada: { class: 'badge-info', text: '📧 Enviada' },
       error: { class: 'badge-danger', text: '❌ Error' }
     }
@@ -105,7 +106,10 @@ function HistorialFacturas({ facturas }) {
                           {formatearFecha(factura.fecha)}
                         </div>
                         <div className="folio">
-                          Folio: {factura.id}
+                          <span>Folio: {factura.id}</span>
+                          {factura.folioFiscal && (
+                            <span className="folio-fiscal">UUID: {factura.folioFiscal}</span>
+                          )}
                         </div>
                       </div>
                     </td>

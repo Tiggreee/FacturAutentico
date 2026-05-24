@@ -53,6 +53,14 @@
   color: var(--text-secondary);
 }
 
+.folio-fiscal {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
 .total-cell {
   font-weight: 600;
   font-size: 16px;

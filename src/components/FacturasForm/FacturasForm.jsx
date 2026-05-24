@@ -3,6 +3,26 @@ import { PRODUCTOS_CATALOGO, FORMAS_PAGO } from '../../data/catalogos'
 import { validarRFC, calcularTotal } from '../../utils/validaciones'
 import './FacturasForm.css'
 
+const apiBase = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
+
+async function crearFacturaApi(payload) {
+  const url = `${apiBase}/api/facturas`
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) {
+    const msg = data.error || data.missing?.join(', ') || res.statusText
+    throw new Error(typeof msg === 'string' ? msg : 'Error al timbrar')
+  }
+  if (!data.ok || !data.factura) {
+    throw new Error('Respuesta inválida del servidor')
+  }
+  return data.factura
+}
+
 function FacturasForm({ onFacturaCreada }) {
   const [formData, setFormData] = useState({
     rfcCliente: '',
@@ -82,9 +102,7 @@ function FacturasForm({ onFacturaCreada }) {
       const iva = subtotal * 0.16
       const total = subtotal + iva
 
-      const nuevaFactura = {
-        id: Date.now(),
-        fecha: new Date().toISOString(),
+      const payload = {
         cliente: {
           rfc: formData.rfcCliente.toUpperCase(),
           nombre: formData.nombreCliente,
@@ -100,19 +118,10 @@ function FacturasForm({ onFacturaCreada }) {
           total: total.toFixed(2)
         },
         formaPago: formData.formaPago,
-        usoCFDI: formData.usoCFDI,
-        estado: 'pendiente' // pendiente, timbrada, enviada
+        usoCFDI: formData.usoCFDI
       }
 
-      // Aquí se integraría con la API de timbrado
-      console.log('Factura a procesar:', nuevaFactura)
-      
-      // Simular procesamiento
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      nuevaFactura.estado = 'timbrada'
-      nuevaFactura.folioFiscal = `UUID-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-
+      const nuevaFactura = await crearFacturaApi(payload)
       onFacturaCreada(nuevaFactura)
       
       // Limpiar formulario
@@ -128,7 +137,11 @@ function FacturasForm({ onFacturaCreada }) {
 
     } catch (error) {
       console.error('Error al procesar factura:', error)
-      setErrores({ general: 'Error al procesar la factura. Inténtalo de nuevo.' })
+      setErrores({
+        general:
+          error?.message ||
+          'Error al procesar la factura. ¿Está corriendo la API? (npm run api o npm run dev:all).'
+      })
     } finally {
       setEnviando(false)
     }

@@ -1,31 +1,5 @@
-﻿# Dependencias
 node_modules
-
-# Build
-dist/
-build/
-
-# Entornos
+dist
 .env
-.env.local
-.env.production
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-*.log
-
-# OS
+server/.env
 .DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Temporal
-*.tmp
-*.temp
