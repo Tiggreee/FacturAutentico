@@ -1,4 +1,4 @@
-name: ci
+name: CI
 
 on:
   push:
@@ -7,9 +7,17 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quality:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,19 +28,30 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Root install and checks
-        run: |
-          if [ -f package.json ]; then
-            npm ci || npm install
-            npm run build --if-present
-            npm test --if-present
-          fi
+      - name: Root install
+        run: npm ci --no-audit --no-fund
 
-      - name: Server install and checks
-        run: |
-          if [ -f server/package.json ]; then
-            cd server
-            npm ci || npm install
-            npm run build --if-present
-            npm test --if-present
-          fi
+      - name: Root lint
+        run: npm run lint --if-present
+
+      - name: Root build
+        run: npm run build --if-present
+
+      - name: Root tests
+        run: npm test --if-present
+
+      - name: Server install
+        working-directory: server
+        run: npm ci --no-audit --no-fund
+
+      - name: Server lint
+        working-directory: server
+        run: npm run lint --if-present
+
+      - name: Server build
+        working-directory: server
+        run: npm run build --if-present
+
+      - name: Server tests
+        working-directory: server
+        run: npm test --if-present
