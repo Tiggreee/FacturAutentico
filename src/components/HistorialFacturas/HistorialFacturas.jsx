@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import './HistorialFacturas.css'
 
 function HistorialFacturas({ facturas }) {
@@ -34,7 +35,7 @@ function HistorialFacturas({ facturas }) {
     Total="${factura.importes.total}">
     <!-- Contenido XML simplificado -->
 </cfdi:Comprobante>`
-    
+
     const blob = new Blob([xmlContent], { type: 'application/xml' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
@@ -52,9 +53,9 @@ function HistorialFacturas({ facturas }) {
   const enviarPorCorreo = async (factura) => {
     try {
       // Simular envío por correo
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       alert(`Factura enviada por correo a: ${factura.cliente.email}`)
-    } catch (error) {
+    } catch {
       alert('Error al enviar por correo')
     }
   }
@@ -102,68 +103,40 @@ function HistorialFacturas({ facturas }) {
                   <tr key={factura.id}>
                     <td>
                       <div className="fecha-cell">
-                        <div className="fecha-principal">
-                          {formatearFecha(factura.fecha)}
-                        </div>
+                        <div className="fecha-principal">{formatearFecha(factura.fecha)}</div>
                         <div className="folio">
                           <span>Folio: {factura.id}</span>
-                          {factura.folioFiscal && (
-                            <span className="folio-fiscal">UUID: {factura.folioFiscal}</span>
-                          )}
+                          {factura.folioFiscal && <span className="folio-fiscal">UUID: {factura.folioFiscal}</span>}
                         </div>
                       </div>
                     </td>
                     <td>
                       <div className="cliente-cell">
-                        <div className="cliente-nombre">
-                          {factura.cliente.nombre}
-                        </div>
-                        <div className="cliente-rfc">
-                          {factura.cliente.rfc}
-                        </div>
+                        <div className="cliente-nombre">{factura.cliente.nombre}</div>
+                        <div className="cliente-rfc">{factura.cliente.rfc}</div>
                       </div>
                     </td>
                     <td>
                       <div className="producto-cell">
-                        <div className="producto-nombre">
-                          {factura.producto.nombre}
-                        </div>
-                        <div className="producto-cantidad">
-                          Cantidad: {factura.producto.cantidad}
-                        </div>
+                        <div className="producto-nombre">{factura.producto.nombre}</div>
+                        <div className="producto-cantidad">Cantidad: {factura.producto.cantidad}</div>
                       </div>
                     </td>
                     <td>
-                      <div className="total-cell">
-                        ${factura.importes.total}
-                      </div>
+                      <div className="total-cell">${factura.importes.total}</div>
                     </td>
                     <td>
-                      <span className={`badge ${badge.class}`}>
-                        {badge.text}
-                      </span>
+                      <span className={`badge ${badge.class}`}>{badge.text}</span>
                     </td>
                     <td>
                       <div className="acciones">
-                        <button
-                          className="btn-icon"
-                          onClick={() => descargarXML(factura)}
-                          title="Descargar XML"
-                        >
+                        <button className="btn-icon" onClick={() => descargarXML(factura)} title="Descargar XML">
                           📄
                         </button>
-                        <button
-                          className="btn-icon"
-                          onClick={() => descargarPDF(factura)}
-                          title="Descargar PDF"
-                        >
+                        <button className="btn-icon" onClick={() => descargarPDF(factura)} title="Descargar PDF">
                           📋
                         </button>
-                        <button
-                          className="btn-icon"
-                          onClick={() => enviarPorCorreo(factura)}
-                          title="Enviar por correo"
-                        >
+                        <button className="btn-icon" onClick={() => enviarPorCorreo(factura)} title="Enviar por correo">
                           📧
                         </button>
                       </div>
