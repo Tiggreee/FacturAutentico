@@ -1,6 +1,7 @@
+/* eslint react/prop-types: 0 */
 import { useState } from 'react'
 import { PRODUCTOS_CATALOGO, FORMAS_PAGO } from '../../data/catalogos'
-import { validarRFC, calcularTotal } from '../../utils/validaciones'
+import { validarRFC } from '../../utils/validaciones'
 import './FacturasForm.css'
 
 const apiBase = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
@@ -30,23 +31,22 @@ function FacturasForm({ onFacturaCreada }) {
     emailCliente: '',
     productoId: '',
     cantidad: 1,
-    formaPago: '01', // Efectivo por defecto
-    usoCFDI: 'G03' // Gastos en general por defecto
+    formaPago: '01',
+    usoCFDI: 'G03'
   })
-  
+
   const [errores, setErrores] = useState({})
   const [enviando, setEnviando] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }))
-    
-    // Limpiar error cuando el usuario empiece a escribir
+
     if (errores[name]) {
-      setErrores(prev => ({
+      setErrores((prev) => ({
         ...prev,
         [name]: ''
       }))
@@ -56,31 +56,26 @@ function FacturasForm({ onFacturaCreada }) {
   const validarFormulario = () => {
     const nuevosErrores = {}
 
-    // Validar RFC
     if (!formData.rfcCliente) {
       nuevosErrores.rfcCliente = 'El RFC es obligatorio'
     } else if (!validarRFC(formData.rfcCliente)) {
       nuevosErrores.rfcCliente = 'RFC inválido'
     }
 
-    // Validar nombre
     if (!formData.nombreCliente.trim()) {
       nuevosErrores.nombreCliente = 'El nombre es obligatorio'
     }
 
-    // Validar email
     if (!formData.emailCliente) {
       nuevosErrores.emailCliente = 'El email es obligatorio'
     } else if (!/\S+@\S+\.\S+/.test(formData.emailCliente)) {
       nuevosErrores.emailCliente = 'Email inválido'
     }
 
-    // Validar producto
     if (!formData.productoId) {
       nuevosErrores.productoId = 'Debe seleccionar un producto'
     }
 
-    // Validar cantidad
     if (!formData.cantidad || formData.cantidad < 1) {
       nuevosErrores.cantidad = 'La cantidad debe ser mayor a 0'
     }
@@ -91,7 +86,7 @@ function FacturasForm({ onFacturaCreada }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     if (!validarFormulario()) return
 
     setEnviando(true)
@@ -110,7 +105,7 @@ function FacturasForm({ onFacturaCreada }) {
         },
         producto: {
           ...producto,
-          cantidad: parseInt(formData.cantidad)
+          cantidad: parseInt(formData.cantidad, 10)
         },
         importes: {
           subtotal: subtotal.toFixed(2),
@@ -123,8 +118,7 @@ function FacturasForm({ onFacturaCreada }) {
 
       const nuevaFactura = await crearFacturaApi(payload)
       onFacturaCreada(nuevaFactura)
-      
-      // Limpiar formulario
+
       setFormData({
         rfcCliente: '',
         nombreCliente: '',
@@ -134,7 +128,6 @@ function FacturasForm({ onFacturaCreada }) {
         formaPago: '01',
         usoCFDI: 'G03'
       })
-
     } catch (error) {
       console.error('Error al procesar factura:', error)
       setErrores({
@@ -157,27 +150,18 @@ function FacturasForm({ onFacturaCreada }) {
       <div className="card">
         <div className="card-header">
           <h2 className="card-title">Nueva Factura CFDI 4.0</h2>
-          <p className="card-description">
-            Completa los datos necesarios para generar la factura electrónica
-          </p>
+          <p className="card-description">Completa los datos necesarios para generar la factura electrónica</p>
         </div>
 
-        {errores.general && (
-          <div className="alert alert-error">
-            {errores.general}
-          </div>
-        )}
+        {errores.general && <div className="alert alert-error">{errores.general}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="grid grid-2">
-            {/* Datos del Cliente */}
             <div className="form-section">
               <h3>📋 Datos del Cliente</h3>
-              
+
               <div className="form-group">
-                <label htmlFor="rfcCliente" className="form-label">
-                  RFC del Cliente *
-                </label>
+                <label htmlFor="rfcCliente" className="form-label">RFC del Cliente *</label>
                 <input
                   type="text"
                   id="rfcCliente"
@@ -188,15 +172,11 @@ function FacturasForm({ onFacturaCreada }) {
                   placeholder="XAXX010101000"
                   maxLength="13"
                 />
-                {errores.rfcCliente && (
-                  <div className="error">{errores.rfcCliente}</div>
-                )}
+                {errores.rfcCliente && <div className="error">{errores.rfcCliente}</div>}
               </div>
 
               <div className="form-group">
-                <label htmlFor="nombreCliente" className="form-label">
-                  Nombre o Razón Social *
-                </label>
+                <label htmlFor="nombreCliente" className="form-label">Nombre o Razón Social *</label>
                 <input
                   type="text"
                   id="nombreCliente"
@@ -206,15 +186,11 @@ function FacturasForm({ onFacturaCreada }) {
                   className={`form-input ${errores.nombreCliente ? 'error' : ''}`}
                   placeholder="Juan Pérez García"
                 />
-                {errores.nombreCliente && (
-                  <div className="error">{errores.nombreCliente}</div>
-                )}
+                {errores.nombreCliente && <div className="error">{errores.nombreCliente}</div>}
               </div>
 
               <div className="form-group">
-                <label htmlFor="emailCliente" className="form-label">
-                  Email *
-                </label>
+                <label htmlFor="emailCliente" className="form-label">Email *</label>
                 <input
                   type="email"
                   id="emailCliente"
@@ -224,20 +200,15 @@ function FacturasForm({ onFacturaCreada }) {
                   className={`form-input ${errores.emailCliente ? 'error' : ''}`}
                   placeholder="cliente@ejemplo.com"
                 />
-                {errores.emailCliente && (
-                  <div className="error">{errores.emailCliente}</div>
-                )}
+                {errores.emailCliente && <div className="error">{errores.emailCliente}</div>}
               </div>
             </div>
 
-            {/* Datos del Producto */}
             <div className="form-section">
               <h3>🛍️ Producto y Facturación</h3>
-              
+
               <div className="form-group">
-                <label htmlFor="productoId" className="form-label">
-                  Producto *
-                </label>
+                <label htmlFor="productoId" className="form-label">Producto *</label>
                 <select
                   id="productoId"
                   name="productoId"
@@ -252,15 +223,11 @@ function FacturasForm({ onFacturaCreada }) {
                     </option>
                   ))}
                 </select>
-                {errores.productoId && (
-                  <div className="error">{errores.productoId}</div>
-                )}
+                {errores.productoId && <div className="error">{errores.productoId}</div>}
               </div>
 
               <div className="form-group">
-                <label htmlFor="cantidad" className="form-label">
-                  Cantidad *
-                </label>
+                <label htmlFor="cantidad" className="form-label">Cantidad *</label>
                 <input
                   type="number"
                   id="cantidad"
@@ -271,15 +238,11 @@ function FacturasForm({ onFacturaCreada }) {
                   min="1"
                   max="999"
                 />
-                {errores.cantidad && (
-                  <div className="error">{errores.cantidad}</div>
-                )}
+                {errores.cantidad && <div className="error">{errores.cantidad}</div>}
               </div>
 
               <div className="form-group">
-                <label htmlFor="formaPago" className="form-label">
-                  Forma de Pago
-                </label>
+                <label htmlFor="formaPago" className="form-label">Forma de Pago</label>
                 <select
                   id="formaPago"
                   name="formaPago"
@@ -287,7 +250,7 @@ function FacturasForm({ onFacturaCreada }) {
                   onChange={handleChange}
                   className="form-select"
                 >
-                  {FORMAS_PAGO.map(forma => (
+                  {FORMAS_PAGO.map((forma) => (
                     <option key={forma.clave} value={forma.clave}>
                       {forma.clave} - {forma.descripcion}
                     </option>
@@ -296,9 +259,7 @@ function FacturasForm({ onFacturaCreada }) {
               </div>
 
               <div className="form-group">
-                <label htmlFor="usoCFDI" className="form-label">
-                  Uso de CFDI
-                </label>
+                <label htmlFor="usoCFDI" className="form-label">Uso de CFDI</label>
                 <select
                   id="usoCFDI"
                   name="usoCFDI"
@@ -315,7 +276,6 @@ function FacturasForm({ onFacturaCreada }) {
             </div>
           </div>
 
-          {/* Resumen de Importes */}
           {productoSeleccionado && (
             <div className="resumen-importes">
               <h3>💰 Resumen de Importes</h3>
@@ -337,20 +297,14 @@ function FacturasForm({ onFacturaCreada }) {
           )}
 
           <div className="form-actions">
-            <button
-              type="submit"
-              className="btn btn-primary btn-large"
-              disabled={enviando}
-            >
+            <button type="submit" className="btn btn-primary btn-large" disabled={enviando}>
               {enviando ? (
                 <>
                   <span className="loading"></span>
                   Procesando factura...
                 </>
               ) : (
-                <>
-                  🧾 Generar Factura CFDI
-                </>
+                <>🧾 Generar Factura CFDI</>
               )}
             </button>
           </div>

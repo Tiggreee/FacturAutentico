@@ -1,4 +1,6 @@
+/* eslint-env node */
 import 'dotenv/config';
+import crypto from 'node:crypto';
 import express from 'express';
 import cors from 'cors';
 
@@ -44,7 +46,7 @@ function validarPayload(body) {
  * Aquí conectas el cliente HTTP del PAC que elijas (Facturama, SW, FiscalAPI, etc.).
  * Nunca expongas PAC_API_KEY al navegador.
  */
-async function timbrarConPAC(_payload) {
+async function timbrarConPAC() {
   if (!process.env.PAC_API_URL || !process.env.PAC_API_KEY) {
     return {
       timbrado: 'MOCK',
@@ -65,7 +67,7 @@ app.post('/api/facturas', async (req, res) => {
       return res.status(400).json({ ok: false, error: 'Faltan campos', missing });
     }
 
-    const timbre = await timbrarConPAC(req.body);
+    const timbre = await timbrarConPAC();
 
     const factura = {
       id: Date.now(),
