@@ -2,22 +2,24 @@
 
 ## Supported Versions
 
-Security fixes are applied to the `main` branch.
+| Version | Supported |
+| --- | --- |
+| v0.1.x | Yes |
+| < v0.1.0 | No |
 
 ## Reporting a Vulnerability
 
-Do not open public issues for vulnerabilities.
-
-Report privately:
-- Contact: tiggreee@vmdev.lat
-- Subject: [SECURITY][FacturAutentico] <short summary>
+Please report vulnerabilities privately by email to tiggreee@vmdev.lat.
 
 Include:
-- Affected flow or endpoint
-- Reproduction details
-- Risk/impact
+- Affected repository and version/commit
+- Reproduction steps or proof of concept
+- Impact assessment
 - Suggested mitigation (if available)
 
 Response targets:
-- Acknowledgment within 72 hours
-- Triage within 7 days
+- Initial acknowledgement: within 72 hours
+- Triage decision: within 7 days
+- Fix timeline: based on severity and exploitability
+
+Do not open public issues for unpatched security vulnerabilities.
