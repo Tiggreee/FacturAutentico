@@ -11,6 +11,8 @@ Sistema simplificado de facturación electrónica para negocios familiares con i
 
 **Resultado esperado**: reducción de errores manuales y mayor velocidad en tareas administrativas de facturación.
 
+**Señal para contratación**: proyecto orientado a impacto operativo real, no solo demostración académica.
+
 ## 🌐 Demo en Vivo
 
 **🔗 [Ver aplicación en GitHub Pages](https://tiggreee.github.io/FacturAutentico/)**
@@ -65,7 +67,6 @@ Sistema simplificado de facturación electrónica para negocios familiares con i
    ```bash
    npm run dev:all
    ```
-   En Windows también puedes: `pwsh -ExecutionPolicy Bypass -File .\dev-local.ps1` (instala deps, crea `server\.env` si falta y arranca todo).
    Equivale a levantar la API (puerto 3000) y Vite (3001, proxifica `/api` → 3000). Alternativa en dos terminales: `npm run api` y `npm run dev`. Detalle: `server/README.md`. Sin API, el formulario no podrá timbrar.
 
 ## 📁 Estructura del Proyecto
