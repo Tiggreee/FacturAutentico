@@ -2,6 +2,15 @@
 
 Sistema simplificado de facturación electrónica para negocios familiares con interfaz minimalista y proceso automatizado.
 
+## 🧠 Para Recruiters / Hiring Managers
+
+- Proyecto con caso real de negocio: facturación CFDI 4.0 para operación familiar.
+- Evidencia de ejecución end-to-end: UX guiada, validaciones fiscales, flujo operativo y despliegue público.
+- Señal de ingeniería práctica: arquitectura mantenible, foco en errores de captura y consistencia operativa.
+- Stack principal: React + Vite con ruta clara de integración backend y timbrado SAT.
+
+**Resultado esperado**: reducción de errores manuales y mayor velocidad en tareas administrativas de facturación.
+
 ## 🌐 Demo en Vivo
 
 **🔗 [Ver aplicación en GitHub Pages](https://tiggreee.github.io/FacturAutentico/)**
