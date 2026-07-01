@@ -18,11 +18,11 @@ El deployment se activa automáticamente cuando haces push a `main`:
 ```bash
 # Opción A: Desde tu terminal local
 git checkout main
-git merge copilot/deploy-front-end-to-github-pages
+git merge feat/deploy-front-end-to-github-pages
 git push origin main
 
 # Opción B: Desde GitHub (Pull Request)
-# - Crea un Pull Request de la rama copilot/deploy-front-end-to-github-pages a main
+# - Crea un Pull Request de la rama feat/deploy-front-end-to-github-pages a main
 # - Haz merge del PR
 ```
 

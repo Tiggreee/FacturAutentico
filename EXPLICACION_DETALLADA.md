@@ -62,13 +62,13 @@ base: '/FacturAutentico/'  // ← NUEVO
 ```bash
 # Opción 1: Desde tu terminal local
 git checkout main
-git merge copilot/deploy-front-end-to-github-pages
+git merge feat/deploy-front-end-to-github-pages
 git push origin main
 
 # Opción 2: Desde GitHub (recomendado para principiantes)
 # 1. Ve al repositorio en GitHub
 # 2. Clic en "Pull requests"
-# 3. Crea un PR de copilot/deploy-front-end-to-github-pages → main
+# 3. Crea un PR de feat/deploy-front-end-to-github-pages → main
 # 4. Haz clic en "Merge pull request"
 ```
 
