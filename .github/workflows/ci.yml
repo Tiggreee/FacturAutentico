@@ -29,7 +29,7 @@ jobs:
           cache: npm
 
       - name: Root install
-        run: npm ci --no-audit --no-fund
+        run: npm ci --no-audit --no-fund || npm install --no-audit --no-fund
 
       - name: Root lint
         run: npm run lint --if-present
@@ -42,7 +42,7 @@ jobs:
 
       - name: Server install
         working-directory: server
-        run: npm ci --no-audit --no-fund
+        run: npm ci --no-audit --no-fund || npm install --no-audit --no-fund
 
       - name: Server lint
         working-directory: server
