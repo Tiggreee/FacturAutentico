@@ -4,9 +4,10 @@ import crypto from 'node:crypto';
 import express from 'express';
 import cors from 'cors';
 
-const PORT = Number(process.env.PORT) || 3000;
+const env = globalThis.process?.env ?? {};
+const PORT = Number(env.PORT) || 3000;
 
-const origins = (process.env.CORS_ORIGINS || 'http://localhost:3001')
+const origins = (env.CORS_ORIGINS || 'http://localhost:3001')
   .split(',')
   .map((s) => s.trim())
   .filter(Boolean);
@@ -24,9 +25,9 @@ app.use(express.json({ limit: '256kb' }));
 app.get('/api/health', (_req, res) => {
   res.json({
     ok: true,
-    modo: process.env.PAC_API_KEY ? 'PAC_CONFIGURADO' : 'MOCK',
+    modo: env.PAC_API_KEY ? 'PAC_CONFIGURADO' : 'MOCK',
     mensaje:
-      process.env.PAC_API_KEY
+      env.PAC_API_KEY
         ? 'Listo para integrar llamadas reales al PAC en timbrarConPAC().'
         : 'Sin PAC_API_KEY: respuestas de timbrado son simuladas (solo desarrollo).'
   });
@@ -47,7 +48,7 @@ function validarPayload(body) {
  * Nunca expongas PAC_API_KEY al navegador.
  */
 async function timbrarConPAC() {
-  if (!process.env.PAC_API_URL || !process.env.PAC_API_KEY) {
+  if (!env.PAC_API_URL || !env.PAC_API_KEY) {
     return {
       timbrado: 'MOCK',
       folioFiscal: crypto.randomUUID(),
